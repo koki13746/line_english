@@ -13,6 +13,15 @@
 */
 
 
+//lineのルート
+Route::post('/resister', 'WordController@update');    //単語登録
+
+Route::put('/mode', 'WordController@index');   //単語テストモード選択
+Route::post('/weak', 'WordController@index');  //ニガテ単語設定
+Route::delete('/delete', 'WordController@edit'); //単語削除機能
+
+Route::get('/test', 'TestController@index');     //単語テスト ok
+Route::post('/test', 'TestController@index');    //単語テスト ok
 
 Route::get('/', 'PostController@index');
 
