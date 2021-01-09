@@ -14,7 +14,7 @@ class CreateWordsTable extends Migration
     public function up()
     {
         Schema::create('words', function (Blueprint $table) {
-            $table->bigIncrements('word_id');
+            $table->bigIncrements('id');
             //$table->bigInteger('user_id');
             $table->char('name_english', 50);
             $table->char('name_japanese', 50);

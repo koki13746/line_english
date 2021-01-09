@@ -17,9 +17,14 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // });
 
-Route::post('/test', 'LineBotController@test');
+Route::get('/test', function () {
+    return view('welcome');
+});
+
+//Route::post('/test', 'LineBotController@test');
 
 Route::group(['namespace' => 'Api'], function() {
     // LineからのWebhookを受信
     Route::post('/line/webhook', 'LineWebhookController@webhook')->name('line.webhook');
+    Route::post('/line/index', 'LineWebhookController@index')->name('line.index');
 });

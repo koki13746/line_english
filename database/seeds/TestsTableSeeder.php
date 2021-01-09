@@ -14,7 +14,7 @@ class TestsTableSeeder extends Seeder
         // \DB::table('tests')->delete();
  
         \DB::table('tests')->insert([
-        'test_id' => '1', 
+        'id' => '1', 
         //'user_id' => '',
         //'word_id' => '1',
         'mode_sort' => '0', //0が順列,1がランダム
@@ -26,7 +26,7 @@ class TestsTableSeeder extends Seeder
         ]);
 
         \DB::table('tests')->insert([
-        'test_id' => '2', 
+        'id' => '2', 
         //'user_id' => '',
         //'word_id' => '2',
         'mode_sort' => '0', //0が順列,1がランダム
@@ -38,7 +38,7 @@ class TestsTableSeeder extends Seeder
         ]);
 
         \DB::table('tests')->insert([
-        'test_id' => '3',
+        'id' => '3',
         //'user_id' => '',
         //'word_id' => '3', 
         'mode_sort' => '0', //0が順列,1がランダム
@@ -50,7 +50,7 @@ class TestsTableSeeder extends Seeder
         ]);
 
         \DB::table('tests')->insert([
-        'test_id' => '4',
+        'id' => '4',
         //'user_id' => '',
         //'word_id' => '4', 
         'mode_sort' => '0', //0が順列,1がランダム
