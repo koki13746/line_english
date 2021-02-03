@@ -50,7 +50,6 @@ class LineWebhookController extends Controller
                 //Log::debug($replyToken);
                 if($message === 'テスト'){
                     $textMessage = new TextMessageBuilder($english_word_id['name_japanese']);
-                    $lineBot->replyMessage($replyToken, $textMessage//, $textMessage??);
                     $lineBot->replyMessage($replyToken, $textMessage);
 
                 }else {
