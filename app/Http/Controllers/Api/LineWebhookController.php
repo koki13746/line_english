@@ -37,8 +37,6 @@ class LineWebhookController extends Controller
         $test = new Test;
         $english_word_id = $test->find(2);
         
-        $angry = 'テストしろよ';
-
         Log::debug($english_word_id);
 
         try {
@@ -46,23 +44,33 @@ class LineWebhookController extends Controller
             $events = $lineBot->parseEventRequest($request->getContent(), $signature);
             
             foreach ($events as $event) {
-                $message = $event->getText();
-                Log::debug($message);
-                $replyToken = $event->getReplyToken();
-                Log::debug($replyToken);
-                // if($event == "テスト"){
-                //     $english_word = $test->find(1);
-                //     $replyToken = $english_word_id['english_name']->getReplyToken();
-                //     $lineBot->replyMessage($replyToken, $textMessage);
-                // }
+                $message = $event->getText();//ユーザーが送るメッセージ
+                //Log::debug($message);
+                $replyToken = $event->getReplyToken();//リプライトークン
+                //Log::debug($replyToken);
                 if($message === 'テスト'){
                     $textMessage = new TextMessageBuilder($english_word_id['name_japanese']);
+                    $lineBot->replyMessage($replyToken, $textMessage//, $textMessage??);
+                    $lineBot->replyMessage($replyToken, $textMessage);
+
                 }else {
-                    $textMessage = new TextMessageBuilder($angry);
+                    $textMessage = new TextMessageBuilder("こんにちは");
+                    $lineBot->replyMessage($replyToken, $textMessage);
                 }
-            
-                //$textMessage = new TextMessageBuilder($english_word_id['name_japanese']);
-                $lineBot->replyMessage($replyToken, $textMessage);
+
+
+                $events = $lineBot->parseEventRequest($request->getContent(), $signature);
+                foreach($events as $event){
+                    $message = $event->getText();
+                    $replyToken = $event->getReplyToken();
+                    if($message == $english_word_id['name_english']){
+                        $textMessage = new TextMessageBuilder("正解");
+                        $lineBot->replyMessage($replyToken, $textMessage);
+                    }else{
+                        $textMessage = new TextMessageBuilder("不正解");
+                        $lineBot->replyMessage($replyToken, $textMessage);
+                    }
+                }
             }
         } catch (Exception $e) {
             // TODO 例外
